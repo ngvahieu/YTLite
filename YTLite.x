@@ -161,7 +161,13 @@ static UIImage *YTImageNamed(NSString *imageName) {
 
 // Hide YouTube Logo
 - (void)setCustomTitleView:(UIView *)customTitleView { if (!ytlBool(@"noYTLogo")) %orig; }
-- (void)setTitle:(NSString *)title { ytlBool(@"noYTLogo") ? %orig(@"") : %orig; }
+- (void)setTitle:(NSString *)title {
+    if (ytlBool(@"noYTLogo")) {
+        %orig(@"");
+    } else {
+        %orig;
+    }
+}
 %end
 
 // Premium logo
