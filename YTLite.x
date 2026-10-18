@@ -112,7 +112,10 @@ static UIImage *YTImageNamed(NSString *imageName) {
 %end
 
 %hook YTSettings
-- (void)setDisableMDXDeviceDiscovery:(BOOL)arg1 { %orig(ytlBool(@"noCast")); }
+- (void)setDisableMDXDeviceDiscovery:(BOOL)arg1 {
+    arg1 = ytlBool(@"noCast");
+    %orig;
+}
 %end
 
 // Hide Navigation Bar Buttons
