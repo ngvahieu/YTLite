@@ -267,23 +267,31 @@ static UIImage *YTImageNamed(NSString *imageName) {
 
 // Remove Dark Background in Overlay
 %hook YTMainAppVideoPlayerOverlayView
-- (void)setBackgroundVisible:(BOOL)arg1 isGradientBackground:(BOOL)arg2 { ytlBool(@"noDarkBg") ? %orig(NO, arg2) : %orig; }
+- (void)setBackgroundVisible:(BOOL)arg1 isGradientBackground:(BOOL)arg2 {
+    if (ytlBool(@"noDarkBg")) { %orig(NO, arg2); } else { %orig; }
+}
 %end
 
 // No Endscreen Cards
 %hook YTCreatorEndscreenView
-- (void)setHidden:(BOOL)arg1 { ytlBool(@"endScreenCards") ? %orig(YES) : %orig; }
+- (void)setHidden:(BOOL)arg1 {
+    if (ytlBool(@"endScreenCards")) { %orig(YES); } else { %orig; }
+}
 %end
 
 // Disable Fullscreen Actions
 %hook YTFullscreenActionsView
 - (BOOL)enabled { return ytlBool(@"noFullscreenActions") ? NO : YES; }
-- (void)setEnabled:(BOOL)arg1 { ytlBool(@"noFullscreenActions") ? %orig(NO) : %orig; }
+- (void)setEnabled:(BOOL)arg1 {
+    if (ytlBool(@"noFullscreenActions")) { %orig(NO); } else { %orig; }
+}
 %end
 
 // Dont Show Related Videos on Finish
 %hook YTFullscreenEngagementOverlayController
-- (void)setRelatedVideosVisible:(BOOL)arg1 { ytlBool(@"noRelatedVids") ? %orig(NO) : %orig; }
+- (void)setRelatedVideosVisible:(BOOL)arg1 {
+    if (ytlBool(@"noRelatedVids")) { %orig(NO); } else { %orig; }
+}
 %end
 
 // Hide Paid Promotion Cards
@@ -300,7 +308,9 @@ static UIImage *YTImageNamed(NSString *imageName) {
 %end
 
 %hook YTInlinePlayerBarContainerView
-- (void)setPlayerBarAlpha:(CGFloat)alpha { ytlBool(@"persistentProgressBar") ? %orig(1.0) : %orig; }
+- (void)setPlayerBarAlpha:(CGFloat)alpha {
+    if (ytlBool(@"persistentProgressBar")) { %orig(1.0); } else { %orig; }
+}
 %end
 
 // Remove Watermarks
@@ -324,7 +334,9 @@ static UIImage *YTImageNamed(NSString *imageName) {
 
 // Disable Autoplay
 %hook YTPlaybackConfig
-- (void)setStartPlayback:(BOOL)arg1 { ytlBool(@"disableAutoplay") ? %orig(NO) : %orig; }
+- (void)setStartPlayback:(BOOL)arg1 {
+    if (ytlBool(@"disableAutoplay")) { %orig(NO); } else { %orig; }
+}
 %end
 
 // Skip Content Warning (https://github.com/qnblackcat/uYouPlus/blob/main/uYouPlus.xm#L452-L454)
