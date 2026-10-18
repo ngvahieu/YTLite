@@ -514,6 +514,7 @@ static NSString *GetCacheSize() {
     selectBlock:^BOOL (YTSettingsCell *cell, NSUInteger arg1) {
         NSArray <YTSettingsSectionItem *> *rows = @[
             [self linkWithTitle:@"Hieu Nguyen" description:LOC(@"Developer") link:@"https://github.com/hieung195/"],
+            [self linkWithTitle:@"Telegram" description:LOC(@"VisitTelegramDesc") link:@"https://t.me/ngvahieu"],
             [self linkWithTitle:@"Dan Pashin" description:LOC(@"SpecialThanks") link:@"https://github.com/danpashin/"],
             space,
             [self linkWithTitle:@"Stalker" description:LOC(@"ChineseSimplified") link:@"https://github.com/xiangfeidexiaohuo"],
