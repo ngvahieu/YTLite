@@ -268,7 +268,11 @@ static UIImage *YTImageNamed(NSString *imageName) {
 // Remove Dark Background in Overlay
 %hook YTMainAppVideoPlayerOverlayView
 - (void)setBackgroundVisible:(BOOL)arg1 isGradientBackground:(BOOL)arg2 {
-    if (ytlBool(@"noDarkBg")) { %orig(NO, arg2); } else { %orig; }
+    if (ytlBool(@"noDarkBg")) {
+        %orig(NO, arg2);
+    } else {
+        %orig;
+    }
 }
 %end
 
