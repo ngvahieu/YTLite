@@ -439,12 +439,24 @@ static UIImage *YTImageNamed(NSString *imageName) {
 // Disable Hints
 %hook YTSettings
 - (BOOL)areHintsDisabled { return ytlBool(@"noHints") ? YES : NO; }
-- (void)setHintsDisabled:(BOOL)arg1 { ytlBool(@"noHints") ? %orig(YES) : %orig; }
+- (void)setHintsDisabled:(BOOL)arg1 {
+    if (ytlBool(@"noHints")) {
+        %orig(YES);
+    } else {
+        %orig;
+    }
+}
 %end
 
 %hook YTUserDefaults
 - (BOOL)areHintsDisabled { return ytlBool(@"noHints") ? YES : NO; }
-- (void)setHintsDisabled:(BOOL)arg1 { ytlBool(@"noHints") ? %orig(YES) : %orig; }
+- (void)setHintsDisabled:(BOOL)arg1 {
+    if (ytlBool(@"noHints")) {
+        %orig(YES);
+    } else {
+        %orig;
+    }
+}
 %end
 
 void addEndTime(YTPlayerViewController *self, YTSingleVideoController *video, YTSingleVideoTime *time) {
