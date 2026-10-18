@@ -219,7 +219,13 @@ static UIImage *YTImageNamed(NSString *imageName) {
 - (void)setAutoplaySwitchButtonRenderer:(id)arg1 { if (!ytlBool(@"hideAutoplay")) %orig; }
 
 // Hide Subs Button
-- (void)setClosedCaptionsOrSubtitlesButtonAvailable:(BOOL)arg1 { ytlBool(@"hideSubs") ? %orig(NO) : %orig; }
+- (void)setClosedCaptionsOrSubtitlesButtonAvailable:(BOOL)arg1 {
+    if (ytlBool(@"hideSubs")) {
+        %orig(NO);
+    } else {
+        %orig;
+    }
+}
 
 // Pause On Overlay
 - (void)setOverlayVisible:(BOOL)visible {
