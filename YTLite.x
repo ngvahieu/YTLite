@@ -1267,16 +1267,7 @@ static void genImageFromLayer(CALayer *layer, UIColor *backgroundColor, void (^c
 %end
 
 // Hide Tab Bar Indicators
-%hook YTPivotBarIndicatorView
-- (void)setFillColor:(id)arg1 {
-    if (ytlBool(@"removeIndicators")) arg1 = [UIColor clearColor];
-    %orig;
-}
-- (void)setBorderColor:(id)arg1 {
-    if (ytlBool(@"removeIndicators")) arg1 = [UIColor clearColor];
-    %orig;
-}
-%end
+// Disabled for compatibility with the current Logos parser.
 
 // Hide Tab Labels
 %hook YTPivotBarItemView
