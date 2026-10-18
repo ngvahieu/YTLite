@@ -427,7 +427,13 @@ static UIImage *YTImageNamed(NSString *imageName) {
 %end
 
 %hook YTSegmentableInlinePlayerBarView
-- (void)setBufferedProgressBarColor:(id)arg1 { if (ytlBool(@"redProgressBar")) %orig([UIColor colorWithRed:0.65 green:0.65 blue:0.65 alpha:0.60]); }
+- (void)setBufferedProgressBarColor:(id)arg1 {
+    if (ytlBool(@"redProgressBar")) {
+        %orig([UIColor colorWithRed:0.65 green:0.65 blue:0.65 alpha:0.60]);
+    } else {
+        %orig;
+    }
+}
 %end
 
 // Disable Hints
