@@ -279,7 +279,11 @@ static UIImage *YTImageNamed(NSString *imageName) {
 // No Endscreen Cards
 %hook YTCreatorEndscreenView
 - (void)setHidden:(BOOL)arg1 {
-    if (ytlBool(@"endScreenCards")) { %orig(YES); } else { %orig; }
+    if (ytlBool(@"endScreenCards")) {
+        %orig(YES);
+    } else {
+        %orig;
+    }
 }
 %end
 
@@ -287,14 +291,22 @@ static UIImage *YTImageNamed(NSString *imageName) {
 %hook YTFullscreenActionsView
 - (BOOL)enabled { return ytlBool(@"noFullscreenActions") ? NO : YES; }
 - (void)setEnabled:(BOOL)arg1 {
-    if (ytlBool(@"noFullscreenActions")) { %orig(NO); } else { %orig; }
+    if (ytlBool(@"noFullscreenActions")) {
+        %orig(NO);
+    } else {
+        %orig;
+    }
 }
 %end
 
 // Dont Show Related Videos on Finish
 %hook YTFullscreenEngagementOverlayController
 - (void)setRelatedVideosVisible:(BOOL)arg1 {
-    if (ytlBool(@"noRelatedVids")) { %orig(NO); } else { %orig; }
+    if (ytlBool(@"noRelatedVids")) {
+        %orig(NO);
+    } else {
+        %orig;
+    }
 }
 %end
 
@@ -313,7 +325,11 @@ static UIImage *YTImageNamed(NSString *imageName) {
 
 %hook YTInlinePlayerBarContainerView
 - (void)setPlayerBarAlpha:(CGFloat)alpha {
-    if (ytlBool(@"persistentProgressBar")) { %orig(1.0); } else { %orig; }
+    if (ytlBool(@"persistentProgressBar")) {
+        %orig(1.0);
+    } else {
+        %orig;
+    }
 }
 %end
 
@@ -339,7 +355,11 @@ static UIImage *YTImageNamed(NSString *imageName) {
 // Disable Autoplay
 %hook YTPlaybackConfig
 - (void)setStartPlayback:(BOOL)arg1 {
-    if (ytlBool(@"disableAutoplay")) { %orig(NO); } else { %orig; }
+    if (ytlBool(@"disableAutoplay")) {
+        %orig(NO);
+    } else {
+        %orig;
+    }
 }
 %end
 
