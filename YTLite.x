@@ -162,11 +162,7 @@ static UIImage *YTImageNamed(NSString *imageName) {
 // Hide YouTube Logo
 - (void)setCustomTitleView:(UIView *)customTitleView { if (!ytlBool(@"noYTLogo")) %orig; }
 - (void)setTitle:(NSString *)title {
-    if (ytlBool(@"noYTLogo")) {
-        %orig(@"");
-    } else {
-        %orig;
-    }
+    %orig;
 }
 %end
 
@@ -198,11 +194,7 @@ static UIImage *YTImageNamed(NSString *imageName) {
 %hook YTHeaderContentComboView
 - (void)enableSubheaderBarWithView:(id)arg1 { if (!ytlBool(@"noSubbar")) %orig; }
 - (void)setFeedHeaderScrollMode:(int)arg1 {
-    if (ytlBool(@"noSubbar")) {
-        %orig(0);
-    } else {
-        %orig;
-    }
+    %orig;
 }
 %end
 
@@ -220,11 +212,7 @@ static UIImage *YTImageNamed(NSString *imageName) {
 
 // Hide Subs Button
 - (void)setClosedCaptionsOrSubtitlesButtonAvailable:(BOOL)arg1 {
-    if (ytlBool(@"hideSubs")) {
-        %orig(NO);
-    } else {
-        %orig;
-    }
+    %orig;
 }
 
 // Pause On Overlay
@@ -268,22 +256,14 @@ static UIImage *YTImageNamed(NSString *imageName) {
 // Remove Dark Background in Overlay
 %hook YTMainAppVideoPlayerOverlayView
 - (void)setBackgroundVisible:(BOOL)arg1 isGradientBackground:(BOOL)arg2 {
-    if (ytlBool(@"noDarkBg")) {
-        %orig(NO, arg2);
-    } else {
-        %orig;
-    }
+    %orig;
 }
 %end
 
 // No Endscreen Cards
 %hook YTCreatorEndscreenView
 - (void)setHidden:(BOOL)arg1 {
-    if (ytlBool(@"endScreenCards")) {
-        %orig(YES);
-    } else {
-        %orig;
-    }
+    %orig;
 }
 %end
 
@@ -291,22 +271,14 @@ static UIImage *YTImageNamed(NSString *imageName) {
 %hook YTFullscreenActionsView
 - (BOOL)enabled { return ytlBool(@"noFullscreenActions") ? NO : YES; }
 - (void)setEnabled:(BOOL)arg1 {
-    if (ytlBool(@"noFullscreenActions")) {
-        %orig(NO);
-    } else {
-        %orig;
-    }
+    %orig;
 }
 %end
 
 // Dont Show Related Videos on Finish
 %hook YTFullscreenEngagementOverlayController
 - (void)setRelatedVideosVisible:(BOOL)arg1 {
-    if (ytlBool(@"noRelatedVids")) {
-        %orig(NO);
-    } else {
-        %orig;
-    }
+    %orig;
 }
 %end
 
@@ -325,11 +297,7 @@ static UIImage *YTImageNamed(NSString *imageName) {
 
 %hook YTInlinePlayerBarContainerView
 - (void)setPlayerBarAlpha:(CGFloat)alpha {
-    if (ytlBool(@"persistentProgressBar")) {
-        %orig(1.0);
-    } else {
-        %orig;
-    }
+    %orig;
 }
 %end
 
@@ -355,11 +323,7 @@ static UIImage *YTImageNamed(NSString *imageName) {
 // Disable Autoplay
 %hook YTPlaybackConfig
 - (void)setStartPlayback:(BOOL)arg1 {
-    if (ytlBool(@"disableAutoplay")) {
-        %orig(NO);
-    } else {
-        %orig;
-    }
+    %orig;
 }
 %end
 
@@ -440,22 +404,14 @@ static UIImage *YTImageNamed(NSString *imageName) {
 %hook YTSettings
 - (BOOL)areHintsDisabled { return ytlBool(@"noHints") ? YES : NO; }
 - (void)setHintsDisabled:(BOOL)arg1 {
-    if (ytlBool(@"noHints")) {
-        %orig(YES);
-    } else {
-        %orig;
-    }
+    %orig;
 }
 %end
 
 %hook YTUserDefaults
 - (BOOL)areHintsDisabled { return ytlBool(@"noHints") ? YES : NO; }
 - (void)setHintsDisabled:(BOOL)arg1 {
-    if (ytlBool(@"noHints")) {
-        %orig(YES);
-    } else {
-        %orig;
-    }
+    %orig;
 }
 %end
 
@@ -835,11 +791,7 @@ static BOOL findCell(ASNodeController *nodeController, NSArray <NSString *> *ide
 // Hide Shorts Elements
 %hook YTReelPausedStateCarouselView
 - (void)setPausedStateCarouselVisible:(BOOL)arg1 animated:(BOOL)arg2 {
-    if (ytlBool(@"hideShortsSubscriptions")) {
-        %orig(NO, arg2);
-    } else {
-        %orig;
-    }
+    %orig;
 }
 %end
 
@@ -855,11 +807,7 @@ static BOOL findCell(ASNodeController *nodeController, NSArray <NSString *> *ide
 
 %hook YTReelHeaderView
 - (void)setTitleLabelVisible:(BOOL)arg1 animated:(BOOL)arg2 {
-    if (ytlBool(@"hideShortsLogo")) {
-        %orig(NO, arg2);
-    } else {
-        %orig;
-    }
+    %orig;
 }
 %end
 
