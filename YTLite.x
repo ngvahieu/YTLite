@@ -1463,7 +1463,9 @@ static NSURL *newCoverURL(NSURL *originalURL) {
 
 %hook YTImageSelectionStrategyImageURLs
 - (id)initWithSelectedImageURL:(NSURL *)selectedImageURL updatedImageURL:(NSURL *)updatedImageURL {
-    return %orig(newCoverURL(selectedImageURL), newCoverURL(updatedImageURL));
+    selectedImageURL = newCoverURL(selectedImageURL);
+    updatedImageURL = newCoverURL(updatedImageURL);
+    return %orig;
 }
 %end
 
