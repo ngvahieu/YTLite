@@ -1269,18 +1269,12 @@ static void genImageFromLayer(CALayer *layer, UIColor *backgroundColor, void (^c
 // Hide Tab Bar Indicators
 %hook YTPivotBarIndicatorView
 - (void)setFillColor:(id)arg1 {
-    if (ytlBool(@"removeIndicators")) {
-        %orig([UIColor clearColor]);
-    } else {
-        %orig(arg1);
-    }
+    if (ytlBool(@"removeIndicators")) arg1 = [UIColor clearColor];
+    %orig;
 }
 - (void)setBorderColor:(id)arg1 {
-    if (ytlBool(@"removeIndicators")) {
-        %orig([UIColor clearColor]);
-    } else {
-        %orig(arg1);
-    }
+    if (ytlBool(@"removeIndicators")) arg1 = [UIColor clearColor];
+    %orig;
 }
 %end
 
