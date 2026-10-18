@@ -1,0 +1,47 @@
+name: Build custom YouTube Plus tweak
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install dependencies
+        run: brew install make ldid
+
+      - name: Setup Theos
+        uses: actions/checkout@v4
+        with:
+          repository: theos/theos
+          path: theos
+          submodules: recursive
+
+      - name: Download iOS SDK
+        run: |
+          git clone --depth=1 https://github.com/theos/sdks.git
+          cp -R sdks/iPhoneOS16.5.sdk theos/sdks/
+
+      - name: Download YouTubeHeader
+        run: |
+          mkdir -p theos/include
+          git clone --depth=1 https://github.com/PoomSmart/YouTubeHeader.git theos/include/YouTubeHeader
+
+      - name: Build tweak
+        run: |
+          export THEOS="$GITHUB_WORKSPACE/theos"
+          make package FINALPACKAGE=1
+
+      - name: Upload deb
+        uses: actions/upload-artifact@v4
+        with:
+          name: custom-ytplus-deb
+          path: packages/*.deb
