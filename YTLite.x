@@ -834,7 +834,13 @@ static BOOL findCell(ASNodeController *nodeController, NSArray <NSString *> *ide
 
 // Hide Shorts Elements
 %hook YTReelPausedStateCarouselView
-- (void)setPausedStateCarouselVisible:(BOOL)arg1 animated:(BOOL)arg2 { ytlBool(@"hideShortsSubscriptions") ? %orig(arg1 = NO, arg2) : %orig; }
+- (void)setPausedStateCarouselVisible:(BOOL)arg1 animated:(BOOL)arg2 {
+    if (ytlBool(@"hideShortsSubscriptions")) {
+        %orig(NO, arg2);
+    } else {
+        %orig;
+    }
+}
 %end
 
 %hook YTReelWatchPlaybackOverlayView
