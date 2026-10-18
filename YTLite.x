@@ -854,7 +854,13 @@ static BOOL findCell(ASNodeController *nodeController, NSArray <NSString *> *ide
 %end
 
 %hook YTReelHeaderView
-- (void)setTitleLabelVisible:(BOOL)arg1 animated:(BOOL)arg2 { ytlBool(@"hideShortsLogo") ? %orig(arg1 = NO, arg2) : %orig; }
+- (void)setTitleLabelVisible:(BOOL)arg1 animated:(BOOL)arg2 {
+    if (ytlBool(@"hideShortsLogo")) {
+        %orig(NO, arg2);
+    } else {
+        %orig;
+    }
+}
 %end
 
 %hook YTReelTransparentStackView
