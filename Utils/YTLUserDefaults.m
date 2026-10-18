@@ -22,6 +22,7 @@ static NSString *const kDefaultsSuiteName = @"com.dvntm.ytlite";
 
 - (void)registerDefaults {
     [self registerDefaults:@{
+        @"premiumYTLogo": @YES,
         @"noAds": @YES,
         @"backgroundPlayback": @YES,
         @"removeUploads": @YES,
