@@ -197,7 +197,13 @@ static UIImage *YTImageNamed(NSString *imageName) {
 
 %hook YTHeaderContentComboView
 - (void)enableSubheaderBarWithView:(id)arg1 { if (!ytlBool(@"noSubbar")) %orig; }
-- (void)setFeedHeaderScrollMode:(int)arg1 { ytlBool(@"noSubbar") ? %orig(0) : %orig; }
+- (void)setFeedHeaderScrollMode:(int)arg1 {
+    if (ytlBool(@"noSubbar")) {
+        %orig(0);
+    } else {
+        %orig;
+    }
+}
 %end
 
 %hook YTChipCloudCell
